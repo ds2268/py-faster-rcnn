@@ -11,7 +11,14 @@ __sets = {}
 
 from datasets.pascal_voc import pascal_voc
 from datasets.coco import coco
+from datasets.jump import jump
 import numpy as np
+
+# Change this path to the directory of images
+jump_devkit_path = '/media/ssd250/jump_voc'
+for split in ['train', 'test']:
+    name = '{}_{}'.format('jump', split)
+    __sets[name] = (lambda split=split: jump(split, jump_devkit_path))
 
 # Set up voc_<year>_<split> using selective search "fast" mode
 for year in ['2007', '2012']:
