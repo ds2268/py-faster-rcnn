@@ -1,11 +1,10 @@
 #!/bin/bash
 # Usage:
 # ./experiments/scripts/faster_rcnn_alt_opt.sh GPU NET DATASET [options args to {train,test}_net.py]
-# DATASET is only pascal_voc for now
+# DATASET is only pascal_voc or jump for now
 #
 # Example:
-# ./experiments/scripts/faster_rcnn_alt_opt.sh 0 VGG_CNN_M_1024 pascal_voc \
-#   --set EXP_DIR foobar RNG_SEED 42 TRAIN.SCALES "[400, 500, 600, 700]"
+# ./experiments/scripts/faster_rcnn_alt_opt.sh 0 VGG16 jump
 
 set -x
 set -e
@@ -23,6 +22,12 @@ EXTRA_ARGS=${array[@]:3:$len}
 EXTRA_ARGS_SLUG=${EXTRA_ARGS// /_}
 
 case $DATASET in
+  jump)
+    TRAIN_IMDB="jump_train"
+    TEST_IMDB="jump_test"
+    PT_DIR="jump"
+    ITERS=50000
+    ;;
   pascal_voc)
     TRAIN_IMDB="voc_2007_trainval"
     TEST_IMDB="voc_2007_test"

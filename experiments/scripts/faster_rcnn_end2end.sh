@@ -26,7 +26,7 @@ case $DATASET in
     TRAIN_IMDB="jump_train"
     TEST_IMDB="jump_test"
     PT_DIR="jump"
-    ITERS=200000
+    ITERS=50000
     ;;
   pascal_voc)
     TRAIN_IMDB="voc_2007_trainval"
